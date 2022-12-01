@@ -89,12 +89,19 @@ exports.updateCanape = async (req, res) => {
     }
 }
 
-exports.deleteCanape = (req, res) => { 
+exports.deleteCanape = async (req, res) => { 
     let canapeId = parseInt(req.params.id)
+    console.log(req.userid)
 
     // Vérification
     if(!canapeId){
         return res.status(400).json({message: "Missing Parameter"})
+    }
+
+    // Propriété du canape
+    let canape = await DB.Canape.findOne({ where: { id: canapeId } })
+    if(canape.user_id != req.userid){
+        return res.status(403).json({message: "Mais bien sûr"})
     }
 
     // Suppression utilisateur

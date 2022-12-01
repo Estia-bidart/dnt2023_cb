@@ -26,6 +26,6 @@ db.User.hasMany(db.Canape, { foreignKey: 'user_id'}),
 db.Canape.belongsTo(db.User, {foreignKey: 'user_id'})
 
 // Synchronisation
-db.sequelize.sync({alter: true})
+//db.sequelize.sync({alter: true})
 
 module.exports = db

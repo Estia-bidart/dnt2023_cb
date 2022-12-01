@@ -13,7 +13,7 @@ router.use((req, res, next) => {
     next()
 })
 
-router.get('/', canapeCtrl.getAllCanape)
+router.get('/', checkTokenMiddleware, canapeCtrl.getAllCanape)
 router.get('/:id', canapeCtrl.getCanape)
 
 router.put('', checkTokenMiddleware, canapeCtrl.addCanape)
